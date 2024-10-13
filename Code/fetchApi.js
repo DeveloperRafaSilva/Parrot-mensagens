@@ -7,11 +7,12 @@ export default function fetchApi() {
     try {
       const response = await fetch("https://tagchatter.herokuapp.com/messages");
       const dados = await response.json();
+      console.log(dados);
 
       for (let i = 0; i < 5; i++) {
         const divCriada = document.createElement("div");
         divCriada.innerHTML = `
-        <div class="card-comentario">
+        <div data-div-like class="card-comentario">
           <div class="div-info">
             <div class="perfil">
               <img src="${dados[i].author.avatar}" alt="${
@@ -33,12 +34,25 @@ export default function fetchApi() {
         </div>
         `;
         dataContainerMessages.appendChild(divCriada);
+        console.log(dados[i].has_parrot);
       }
       const dataLikeParrot = document.querySelectorAll("[data-like-parrot]");
+      const dataDivLike = document.querySelectorAll("[data-div-like]");
       dataLikeParrot.forEach((itemClick, index) => {
         itemClick.addEventListener("click", async () => {
-          const updateMessage = await PutMessagem(dados[index].id);
-          console.log(dados);
+          await PutMessagem(dados[index].id);
+          const dadoslIKE = dados[index].has_parrot;
+          const parrotLike = !dadoslIKE;
+
+          if (parrotLike) {
+            dataDivLike[index].classList.add("liked");
+          } else {
+            alert("olá");
+          }
+
+          itemClick.src = dados[index].has_parrot
+            ? "./imgs/parrot-grey.svg"
+            : "./imgs/parrot.svg";
         });
       });
     } catch (e) {
