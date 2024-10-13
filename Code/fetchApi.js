@@ -2,9 +2,13 @@ import PutMessagem from "./PutMessage.js";
 
 export default function fetchApi() {
   const dataContainerMessages = document.querySelector("[data-conteudo-post]");
+  const divMenuLateral = document.querySelector(".div-menu-lateral");
+  const loader = document.querySelector(".loader");
 
   async function fetchPost() {
     try {
+      divMenuLateral.style.display = "none";
+      loader.style.display = "block";
       const response = await fetch("https://tagchatter.herokuapp.com/messages");
       const dados = await response.json();
       console.log(dados);
@@ -26,13 +30,13 @@ export default function fetchApi() {
                   ? "./imgs/parrot.svg"
                   : "./imgs/parrot-grey.svg"
               }" alt="icone parrot" />
-            </div>
-          </div>
-          <div class="conteudo-post">
-            <p>${dados[i].content}</p>
-          </div>
-        </div>
-        `;
+              </div>
+              </div>
+              <div class="conteudo-post">
+              <p>${dados[i].content}</p>
+              </div>
+              </div>
+              `;
         dataContainerMessages.appendChild(divCriada);
         console.log(dados[i].has_parrot);
       }
@@ -44,19 +48,24 @@ export default function fetchApi() {
           const dadoslIKE = dados[index].has_parrot;
           const parrotLike = !dadoslIKE;
 
-          if (parrotLike) {
-            dataDivLike[index].classList.add("liked");
-          } else {
-            alert("olá");
-          }
+          if (window.localStorage.getItem("error") !== "Message not found") {
+            if (parrotLike) {
+              dataDivLike[index].classList.add("liked");
+            } else {
+              alert("olá");
+            }
 
-          itemClick.src = dados[index].has_parrot
-            ? "./imgs/parrot-grey.svg"
-            : "./imgs/parrot.svg";
+            itemClick.src = dados[index].has_parrot
+              ? "./imgs/parrot-grey.svg"
+              : "./imgs/parrot.svg";
+          }
         });
       });
     } catch (e) {
       console.error("Erro ao buscar ou atualizar as mensagens", e);
+    } finally {
+      divMenuLateral.style.display = "flex";
+      loader.style.display = "none";
     }
   }
 

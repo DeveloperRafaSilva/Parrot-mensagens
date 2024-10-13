@@ -20,7 +20,6 @@ export default function PostMessage() {
         }
       );
       const dados = await response.json();
-      console.log(dados);
     } catch (e) {
     } finally {
     }
@@ -32,7 +31,6 @@ export default function PostMessage() {
         method: "GET",
       });
       const dados = await response.json();
-      console.log(dados);
       dataImagemPerfil.setAttribute("src", dados.avatar);
       window.localStorage.setItem("user", dados.id);
     } catch (e) {

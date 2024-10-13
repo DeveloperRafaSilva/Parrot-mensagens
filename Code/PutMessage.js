@@ -8,8 +8,10 @@ export default async function PutMessagem(idParrotPut) {
       }
     );
     const dados = await response.json();
-    console.log(dados);
+    window.localStorage.setItem("error", dados.error);
+    throw new Error("error", dados.error);
   } catch (e) {
+    console.log(e);
   } finally {
   }
 }
