@@ -1,0 +1,81 @@
+* {
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.div-menu-lateral {
+  display: flex;
+}
+
+aside {
+  background: #25272e;
+  padding: 2rem 2rem;
+  height: 95vh;
+}
+
+header {
+  font-size: 26px;
+  color: #626262;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #000;
+}
+
+.flex-container {
+  flex: 1;
+}
+
+.main {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 2rem;
+  gap: 5rem;
+}
+
+.card-comentario {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.div-info {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.div-info h2 {
+  font-size: 1rem;
+}
+
+.card-comentario img {
+  width: 40px;
+  border-radius: 10px;
+  height: 40px;
+}
+
+.card-comentario {
+  margin: 2rem 0;
+}
+
+.conteudo-post {
+  margin-left: 3rem;
+  flex-grow: 1;
+  display: flex;
+}
+
+.infos-post-usuario img {
+  width: 25px;
+  height: 25px;
+  margin-left: 2rem;
+}
+
+.perfil {
+  display: flex;
+  gap: 1rem;
+}
